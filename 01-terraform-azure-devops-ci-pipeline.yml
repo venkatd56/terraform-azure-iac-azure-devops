@@ -23,5 +23,9 @@ stages:
               Contents: '**'
               TargetFolder: '$(Build.ArtifactStagingDirectory)'
               OverWrite: true
-          - bash: echo contents in the System default Working Directory; ls -R $(System.DefaultWorkingDirectory)
-          - bash: echo Before copying contents in the Build Artifactory Directory; ls -R $(Build.ArtifactStagingDirectory)        
+          - bash: echo After copying contents to the Build Artifactory Directory; ls -R $(Build.ArtifactStagingDirectory)
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'terraform-manifest'
+              publishLocation: 'Container'
