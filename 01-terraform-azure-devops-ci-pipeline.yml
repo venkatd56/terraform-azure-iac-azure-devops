@@ -16,7 +16,9 @@ stages:
           vmImage: 'ubuntu-latest'
         steps:
           - bash: echo contents in the System default Working Directory; ls -R $(System.DefaultWorkingDirectory)
+            displayName: Display Contents in System default Working Directory
           - bash: echo Before copying contents in the Build Artifactory Directory; ls -R $(Build.ArtifactStagingDirectory)
+            displayName: Display Contents in Artifactory Directory Before Copying 
           - task: CopyFiles@2
             inputs:
               SourceFolder: '$(System.DefaultWorkingDirectory)'
@@ -24,6 +26,7 @@ stages:
               TargetFolder: '$(Build.ArtifactStagingDirectory)'
               OverWrite: true
           - bash: echo After copying contents to the Build Artifactory Directory; ls -R $(Build.ArtifactStagingDirectory)
+            displayName: Display Contents in Artifactory Directory After Copying
           - task: PublishBuildArtifacts@1
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
