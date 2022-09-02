@@ -17,4 +17,11 @@ stages:
         steps:
           - bash: echo contents in the System default Working Directory; ls -R $(System.DefaultWorkingDirectory)
           - bash: echo Before copying contents in the Build Artifactory Directory; ls -R $(Build.ArtifactStagingDirectory)
-        
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(System.DefaultWorkingDirectory)'
+              Contents: '**'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+              OverWrite: true
+          - bash: echo contents in the System default Working Directory; ls -R $(System.DefaultWorkingDirectory)
+          - bash: echo Before copying contents in the Build Artifactory Directory; ls -R $(Build.ArtifactStagingDirectory)        
