@@ -1,0 +1,20 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+stages:
+  - stage: Build
+    displayName: Build Stage
+    jobs:
+      - job:
+        displayName: Build Job
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - bash: echo contents in the System default Working Directory; ls -R $(System.DefaultWorkingDirectory)
+          - bash: echo Before copying contents in the Build Artifactory Directory; ls -R $(Build.ArtifactStagingDirectory)
+        
