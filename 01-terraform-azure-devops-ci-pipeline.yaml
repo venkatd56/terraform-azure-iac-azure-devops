@@ -16,7 +16,7 @@ stages:
           vmImage: 'ubuntu-latest'
         steps:
           ## Publish Artifacts pipeline code in addition to Build and Push  
-          - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)
+          - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)/terraform-manifest
           - bash: echo Before copying Contents in Build Artifact Directory; ls -R $(Build.StagingDirectory)
           # Task-1: Copy files (Copy files from a source folder to target folder)
           - task: CopyFiles@2
