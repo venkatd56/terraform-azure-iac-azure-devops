@@ -6,6 +6,10 @@
 trigger:
 - main
 
+parameters:
+  - name: inputName
+    displayName: Tell me your name
+    type: string
 stages:
   - stage: Build
     displayName: Build Stage
@@ -15,7 +19,9 @@ stages:
         pool:
           vmImage: 'ubuntu-latest'
         steps:
-          ## Publish Artifacts pipeline code in addition to Build and Push  
+          ## Publish Artifacts pipeline code in addition to Build and Push
+          - script: echo $(parameters.inputName) "Triggered the Pipeline"
+            displayName: "Print message from automatically created Pipeline"
           - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)/terraform-manifest
           - bash: echo Before copying Contents in Build Artifact Directory; ls -R $(Build.StagingDirectory)
           # Task-1: Copy files (Copy files from a source folder to target folder)
