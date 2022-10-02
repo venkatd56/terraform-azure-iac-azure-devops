@@ -20,7 +20,7 @@ stages:
           vmImage: 'ubuntu-latest'
         steps:
           ## Publish Artifacts pipeline code in addition to Build and Push
-          - script: echo $(parameters.inputName) "Triggered the Pipeline"
+          - script: echo ${{parameters.inputName}} "Triggered the Pipeline"
             displayName: "Print message from automatically created Pipeline"
           - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)/terraform-manifest
             displayName: "Contents in System Default Working Directory"
