@@ -23,9 +23,12 @@ stages:
           - script: echo $(parameters.inputName) "Triggered the Pipeline"
             displayName: "Print message from automatically created Pipeline"
           - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)/terraform-manifest
+            displayName: "Contents in System Default Working Directory"
           - bash: echo Before copying Contents in Build Artifact Directory; ls -R $(Build.StagingDirectory)
+            displayName: "Contents in Build Artifact Directory"
           # Task-1: Copy files (Copy files from a source folder to target folder)
           - task: CopyFiles@2
+            displayName: "Copying Files from Default Directory to Staging Directory"
             inputs:
               SourceFolder: '$(System.DefaultWorkingDirectory)'
               Contents: '**'
